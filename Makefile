@@ -7,12 +7,15 @@ PORT = 8000
 
 init:
 	colima start --runtime docker
-	
+
 build:
 	docker build --tag $(IMAGE_NAME) .
 
 run:
 	docker run -p $(PORT):$(PORT) --name $(CONTAINER_NAME) $(IMAGE_NAME)
+
+bash:
+	docker exec -it uvprodcontainer /bin/bash
 
 clean:
 	docker stop $(CONTAINER_NAME) || true
